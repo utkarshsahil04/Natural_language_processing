@@ -1,0 +1,8 @@
+services:
+  ticket-priority-ai:
+    build: .
+    image: ticket-priority-ai:latest
+    container_name: ticket-priority-ai-app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

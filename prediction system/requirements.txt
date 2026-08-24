@@ -1,0 +1,15 @@
+# NLP & Deep Learning Core
+torch>=2.1.0
+transformers>=4.40.0
+datasets>=2.19.0
+accelerate>=0.30.0
+
+# Data Processing & ML Metrics
+pandas>=2.2.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+
+# API & Web Serving
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.7.0

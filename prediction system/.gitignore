@@ -1,0 +1,18 @@
+# Environments
+.env/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.vscode/
+.idea/
+
+# Large Datasets and Logs
+aa_dataset-tickets-multi-lang-5-2-50-version.csv
+*.log
+
+# Checkpoints (Keep final model in model/priority-distilbert)
+model/checkpoints/

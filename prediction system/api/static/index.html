@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Priority AI | NLP Message Classifier</title>
+    <meta name="description" content="AI-powered ticket priority classification using fine-tuned DistilBERT with GPU acceleration.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="background-glow">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Top Navigation / Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="brand-title">Priority<span class="gradient-text">Pulse</span></h1>
+                    <p class="brand-subtitle">NLP Message Priority Classifier • DistilBERT</p>
+                </div>
+            </div>
+
+            <div class="header-meta">
+                <div class="meta-badge" id="gpu-badge">
+                    <span class="pulse-dot"></span>
+                    <span id="gpu-name">Detecting GPU...</span>
+                </div>
+                <div class="meta-badge model-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                    <span>PyTorch CUDA 12.4</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-grid">
+            <!-- Left: Ticket Input Form -->
+            <section class="card input-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="step-num">1</span>
+                        <h2 class="card-title">Compose or Select Ticket</h2>
+                    </div>
+                    <button class="ghost-btn" id="clear-btn" title="Reset form">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        Clear
+                    </button>
+                </div>
+
+                <!-- Sample Presets Strip -->
+                <div class="presets-section">
+                    <label class="section-label">? Quick Presets</label>
+                    <div class="presets-scroll" id="presets-container">
+                        <!-- Loaded dynamically from API -->
+                    </div>
+                </div>
+
+                <form id="prediction-form" class="ticket-form">
+                    <!-- Ticket Type Selector -->
+                    <div class="form-group">
+                        <label class="field-label">Ticket Type</label>
+                        <div class="type-chips" id="type-chips">
+                            <label class="type-chip">
+                                <input type="radio" name="ticket_type" value="Incident" checked>
+                                <span class="chip-label chip-incident">?? Incident</span>
+                            </label>
+                            <label class="type-chip">
+                                <input type="radio" name="ticket_type" value="Problem">
+                                <span class="chip-label chip-problem">?? Problem</span>
+                            </label>
+                            <label class="type-chip">
+                                <input type="radio" name="ticket_type" value="Request">
+                                <span class="chip-label chip-request">?? Request</span>
+                            </label>
+                            <label class="type-chip">
+                                <input type="radio" name="ticket_type" value="Change">
+                                <span class="chip-label chip-change">?? Change</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Subject Input -->
+                    <div class="form-group">
+                        <div class="field-header">
+                            <label for="ticket-subject" class="field-label">Subject / Title</label>
+                            <span class="char-count" id="subject-count">0/100</span>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="ticket-subject" 
+                            class="text-input" 
+                            placeholder="e.g. Production Database Cluster Outage" 
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <!-- Body Textarea -->
+                    <div class="form-group">
+                        <div class="field-header">
+                            <label for="ticket-body" class="field-label">Message Body / Details</label>
+                            <span class="char-count" id="body-count">0/1000</span>
+                        </div>
+                        <textarea 
+                            id="ticket-body" 
+                            class="textarea-input" 
+                            rows="4" 
+                            placeholder="Describe the issue, impacted services, error messages, and urgency..." 
+                            maxlength="1000"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div class="form-actions">
+                        <button type="submit" class="primary-btn" id="predict-btn">
+                            <span class="btn-spinner" id="btn-spinner"></span>
+                            <span class="btn-text">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                Predict Priority
+                            </span>
+                            <span class="kbd-shortcut">Ctrl + Enter</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Right: Live Prediction Output -->
+            <section class="card result-card" id="result-card">
+                <div class="card-header">
+                    <div class="card-title-group">
+                        <span class="step-num">2</span>
+                        <h2 class="card-title">Prediction Intelligence</h2>
+                    </div>
+                    <div class="latency-tag" id="latency-tag" style="display: none;">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span id="latency-val">0ms</span>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+                    </div>
+                    <h3 class="empty-title">Ready for Analysis</h3>
+                    <p class="empty-desc">Choose a quick preset or type a ticket message and click <strong>Predict Priority</strong> to see real-time classification.</p>
+                </div>
+
+                <!-- Active Result Display -->
+                <div class="result-display" id="result-display" style="display: none;">
+                    <!-- Giant Priority Hero Banner -->
+                    <div class="priority-hero" id="priority-hero">
+                        <div class="hero-left">
+                            <span class="hero-sub">Predicted Severity</span>
+                            <div class="hero-badge" id="hero-badge">
+                                <span class="badge-icon" id="badge-icon">??</span>
+                                <span class="badge-text" id="badge-text">HIGH</span>
+                            </div>
+                        </div>
+                        <div class="hero-right">
+                            <div class="confidence-circle" id="confidence-circle">
+                                <svg viewBox="0 0 36 36" class="circular-chart">
+                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <path class="circle-fill" id="circle-fill" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                    <text x="18" y="20.35" class="circle-percentage" id="circle-percentage">0%</text>
+                                </svg>
+                            </div>
+                            <span class="confidence-caption">Confidence</span>
+                        </div>
+                    </div>
+
+                    <!-- Probability Distribution Breakdown -->
+                    <div class="breakdown-section">
+                        <h4 class="breakdown-title">Class Probabilities Breakdown</h4>
+                        
+                        <!-- High Bar -->
+                        <div class="prob-row" id="row-high">
+                            <div class="prob-meta">
+                                <span class="prob-name"><span class="dot dot-high"></span> High Priority</span>
+                                <span class="prob-pct" id="pct-high">0.0%</span>
+                            </div>
+                            <div class="prob-track">
+                                <div class="prob-bar bar-high" id="bar-high" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Medium Bar -->
+                        <div class="prob-row" id="row-medium">
+                            <div class="prob-meta">
+                                <span class="prob-name"><span class="dot dot-medium"></span> Medium Priority</span>
+                                <span class="prob-pct" id="pct-medium">0.0%</span>
+                            </div>
+                            <div class="prob-track">
+                                <div class="prob-bar bar-medium" id="bar-medium" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Low Bar -->
+                        <div class="prob-row" id="row-low">
+                            <div class="prob-meta">
+                                <span class="prob-name"><span class="dot dot-low"></span> Low Priority</span>
+                                <span class="prob-pct" id="pct-low">0.0%</span>
+                            </div>
+                            <div class="prob-track">
+                                <div class="prob-bar bar-low" id="bar-low" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formatted Model Input Codeblock -->
+                    <div class="formatted-input-section">
+                        <div class="input-tag-header">
+                            <span class="section-label">Tokenized Input Format</span>
+                            <button class="copy-btn" id="copy-input-btn" title="Copy input text">Copy</button>
+                        </div>
+                        <code class="formatted-code" id="formatted-input-text"></code>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Tabs Section: History & Batch Testing -->
+        <section class="card secondary-card">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="history-tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                    Prediction History (<span id="history-count">0</span>)
+                </button>
+                <button class="tab-btn" data-tab="batch-tab">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                    Batch Benchmark Suite
+                </button>
+            </div>
+
+            <!-- Tab Content: History -->
+            <div class="tab-pane active" id="history-tab">
+                <div class="history-controls">
+                    <span class="history-hint">Recent inferences saved locally</span>
+                    <button class="ghost-btn" id="clear-history-btn">Clear History</button>
+                </div>
+                <div class="table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Type</th>
+                                <th>Subject</th>
+                                <th>Priority</th>
+                                <th>Confidence</th>
+                                <th>Latency</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-tbody">
+                            <tr class="no-history-row">
+                                <td colspan="7">No prediction history yet. Run a prediction above!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab Content: Batch Benchmark -->
+            <div class="tab-pane" id="batch-tab">
+                <div class="batch-header">
+                    <div>
+                        <h3 class="batch-title">Automated Validation Suite</h3>
+                        <p class="batch-desc">Run inference on all 6 standard test scenarios simultaneously to measure model accuracy and batch latency.</p>
+                    </div>
+                    <button class="primary-btn batch-run-btn" id="run-batch-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        Execute Batch Test
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="history-table batch-table">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Subject</th>
+                                <th>Predicted</th>
+                                <th>Expected</th>
+                                <th>Confidence</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="batch-tbody">
+                            <tr>
+                                <td colspan="7" class="text-center">Click <strong>Execute Batch Test</strong> to benchmark all preset samples.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Built with <strong>DistilBERT</strong>, <strong>FastAPI</strong>, & <strong>PyTorch CUDA</strong></p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
