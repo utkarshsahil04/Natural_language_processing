@@ -1,0 +1,155 @@
+﻿"""
+Creates a standalone sample corpus so the pipeline works WITHOUT Kaggle download.
+Writes: data/processed/corpus.csv  (120 messages)
+"""
+import os, csv
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT_DIR  = os.path.join(BASE_DIR, "data", "processed")
+os.makedirs(OUT_DIR, exist_ok=True)
+
+MESSAGES = [
+    # ── Floods ──────────────────────────────────────────────────────────────
+    ("KG_00001","People are trapped near the downtown bridge, need boats immediately","kaggle_sample"),
+    ("KG_00002","Send rescue teams to Riverside Colony area, flooding is severe","kaggle_sample"),
+    ("KG_00003","Our house in Sector 12 Noida is submerged, please send help urgently","kaggle_sample"),
+    ("KG_00004","Flood waters rising near Oak Street, families need evacuation NOW","kaggle_sample"),
+    ("KG_00005","SOS from Lakeview apartments, ground floor flooded, require medical aid","kaggle_sample"),
+    ("KG_00006","Highway 44 near Rampur completely blocked by flood, send bulldozers","kaggle_sample"),
+    ("KG_00007","Villages along Chambal river cut off, need food and medicine immediately","kaggle_sample"),
+    ("KG_00008","Majuli island Assam, 5000 people stranded, need helicopter rescue","kaggle_sample"),
+    ("KG_00009","Flash floods in Coorg Karnataka, roads washed away, send NDRF","kaggle_sample"),
+    ("KG_00010","Water level rising at Gandhi Nagar bus stand, evacuation needed","kaggle_sample"),
+    ("KG_00011","Families stranded on rooftops near Wellington Bridge, send boats","kaggle_sample"),
+    ("KG_00012","Brahmaputra overflowing near Dibrugarh, medical camps needed urgently","kaggle_sample"),
+    ("KG_00013","300 people trapped at community hall near Metro Park, need rescue","kaggle_sample"),
+    ("KG_00014","Road to Badrinath temple completely submerged, pilgrims need help","kaggle_sample"),
+    ("KG_00015","Request immediate assistance at Tilak Nagar drainage area, flooding","kaggle_sample"),
+    ("KG_00016","Emergency at Yamuna floodplain near Kalindi Kunj bridge, send boats","kaggle_sample"),
+    ("KG_00017","Multiple families stuck at Rani Bagh area, require food and water","kaggle_sample"),
+    ("KG_00018","Flood victims in Vaishali Nagar Guwahati need immediate rescue","kaggle_sample"),
+    ("KG_00019","Swollen river near Rishikesh threatens ashram colony, help needed","kaggle_sample"),
+    ("KG_00020","Rescue required at Velachery waterlogged area Chennai, boats needed","kaggle_sample"),
+
+    # ── Earthquakes ─────────────────────────────────────────────────────────
+    ("KG_00021","Earthquake struck downtown area, buildings collapsed near Main Square","kaggle_sample"),
+    ("KG_00022","Tremors in Imphal West Manipur, need rescue teams immediately","kaggle_sample"),
+    ("KG_00023","Quake devastated Chamoli district, send NDRF and medical teams","kaggle_sample"),
+    ("KG_00024","People trapped under rubble at Joshimath colony, heavy equipment needed","kaggle_sample"),
+    ("KG_00025","Building collapsed in Uttarkashi town, many injured, send ambulances","kaggle_sample"),
+    ("KG_00026","Major earthquake hit coastal region near Port Blair, send navy ships","kaggle_sample"),
+    ("KG_00027","Cracks in all buildings near Bhuj market area, require structural team","kaggle_sample"),
+    ("KG_00028","Earthquake victims in Ridgecrest neighborhood need shelter and food","kaggle_sample"),
+    ("KG_00029","Aftershock felt at Latur city center, old buildings dangerous, evacuate","kaggle_sample"),
+    ("KG_00030","Mountain road collapsed near Kedarnath, rescue teams needed urgently","kaggle_sample"),
+
+    # ── Fires ───────────────────────────────────────────────────────────────
+    ("KG_00031","Fire spreading rapidly at Anaj Mandi Delhi, need more fire engines now","kaggle_sample"),
+    ("KG_00032","Building on fire at Dharavi slum area, people stuck on 4th floor","kaggle_sample"),
+    ("KG_00033","Forest fire near Nainital lake threatening villages, evacuate Ramgarh","kaggle_sample"),
+    ("KG_00034","Chemical plant fire in Okhla Industrial Phase 2, need hazmat teams","kaggle_sample"),
+    ("KG_00035","Apartment complex fire at MG Road Bangalore, send ladder trucks urgently","kaggle_sample"),
+    ("KG_00036","Factory fire in Ludhiana textile area, workers trapped, need rescue","kaggle_sample"),
+    ("KG_00037","Wildfire approaching Malibu coastal highway, residents must evacuate","kaggle_sample"),
+    ("KG_00038","Market fire at Chandni Chowk Old Delhi, water pressure low, need help","kaggle_sample"),
+    ("KG_00039","Slum fire at Govandi area Mumbai, supply water tankers immediately","kaggle_sample"),
+    ("KG_00040","Gas explosion near Sector 5 industrial area, injured people need ambulance","kaggle_sample"),
+
+    # ── Cyclones/Storms ──────────────────────────────────────────────────────
+    ("KG_00041","Cyclone approaching Kutch coast Gujarat, fishing villages need evacuation","kaggle_sample"),
+    ("KG_00042","Storm surge in Puri Odisha, coastal homes flooded, need rescue boats","kaggle_sample"),
+    ("KG_00043","Hurricane warning for Miami Beach area, supply emergency shelters now","kaggle_sample"),
+    ("KG_00044","Super cyclone near Kakinada Andhra coast, send navy for evacuation","kaggle_sample"),
+    ("KG_00045","Tauktae cyclone hit Raigad district, roads blocked, send bulldozers","kaggle_sample"),
+    ("KG_00046","Typhoon approaching Manila Bay, immediate evacuation of coastal areas","kaggle_sample"),
+    ("KG_00047","Storm destroyed homes near Cox Bazar, send food and tarpaulin sheets","kaggle_sample"),
+    ("KG_00048","Cyclone hit Paradip port area, fishermen missing at sea, need coast guard","kaggle_sample"),
+    ("KG_00049","Tornado damage at Joplin Missouri, survivors need medical aid urgently","kaggle_sample"),
+    ("KG_00050","Wind speeds 180kmph near Vizag coast, require rescue operations now","kaggle_sample"),
+
+    # ── Landslides ──────────────────────────────────────────────────────────
+    ("KG_00051","Landslide blocked NH-44 near Ramban, 200 vehicles stranded, need JCBs","kaggle_sample"),
+    ("KG_00052","Mudslide near Wayanad district Kerala, villages cut off, send helicopter","kaggle_sample"),
+    ("KG_00053","Landslide in Darjeeling hills area, houses buried, NDRF needed now","kaggle_sample"),
+    ("KG_00054","Road blocked by rockfall near Manali Leh highway, 50 tourists stuck","kaggle_sample"),
+    ("KG_00055","Massive landslide near Aizawl Mizoram, supply food and water urgently","kaggle_sample"),
+    ("KG_00056","Debris flow near Mahad Maharashtra, two buses swept away, rescue needed","kaggle_sample"),
+    ("KG_00057","Landslide at Idukki dam area, evacuate downstream villages immediately","kaggle_sample"),
+    ("KG_00058","Road to Badami caves blocked by landslide, tourists need rescue","kaggle_sample"),
+
+    # ── Medical Emergencies ──────────────────────────────────────────────────
+    ("KG_00059","Patient having heart attack near Karol Bagh metro, send ambulance now","kaggle_sample"),
+    ("KG_00060","Multiple casualties at NH-8 Gurgaon accident, need trauma units urgently","kaggle_sample"),
+    ("KG_00061","Child trapped in borewell near Hisar Haryana, NDRF needed immediately","kaggle_sample"),
+    ("KG_00062","Heatwave casualties at Churu Rajasthan, set up medical camps now","kaggle_sample"),
+    ("KG_00063","Cholera outbreak in relief camp near Muzaffarpur, need medical teams","kaggle_sample"),
+    ("KG_00064","Snake bite victim in remote village near Bastar, need antivenom urgently","kaggle_sample"),
+    ("KG_00065","Bus accident near Manali hill road, 15 injured, hospital 50km away","kaggle_sample"),
+    ("KG_00066","Train derailment near Balasore Odisha, hundreds injured, blood needed","kaggle_sample"),
+    ("KG_00067","Gas leak at BHEL Haridwar plant, 20 workers unconscious, need oxygen","kaggle_sample"),
+    ("KG_00068","Stampede at Kumbh Mela Prayagraj, many injured near Sangam ghat","kaggle_sample"),
+    ("KG_00069","Dengue outbreak near Loni border area, supply medicines and mosquito nets","kaggle_sample"),
+    ("KG_00070","Accident at Yamuna Expressway near Greater Noida, need ambulance now","kaggle_sample"),
+
+    # ── Hinglish / Indian Context ────────────────────────────────────────────
+    ("HI_0001","Bahut tez barish ho rahi hai Yamuna bridge ke paas paani aa gaya help chahiye","manual_hinglish"),
+    ("HI_0002","Flood in Sector 12 Noida please send boats urgently log fase mein atke hain","manual_hinglish"),
+    ("HI_0003","SOS Gandhi Nagar mein ghar ke andar paani aa gaya rescue team bhejo please","manual_hinglish"),
+    ("HI_0004","Yamuna overflowing near Kalindi Kunj need immediate evacuation DelhiFloods","manual_hinglish"),
+    ("HI_0005","Chambal river flooding Morena district villages near Joura cut off need army","manual_hinglish"),
+    ("HI_0006","Barish ne rasta band kar diya ambulance nahi aa sakti medical help needed Kota","manual_hinglish"),
+    ("HI_0007","Brahmaputra flood in Majuli island 5000 people stranded boats aur food chahiye","manual_hinglish"),
+    ("HI_0008","Rescue needed at Vaishali Nagar Guwahati houses submerged AssamFloods","manual_hinglish"),
+    ("HI_0009","Need helicopter rescue from Bageshwar Uttarakhand road completely washed away","manual_hinglish"),
+    ("HI_0010","Srinagar Dal Lake area flooding send NDRF team to Hazratbal immediately","manual_hinglish"),
+    ("HI_0011","Bhookamp aa gaya Chamoli mein buildings gir gayi NDRF ko bulao jaldi","manual_hinglish"),
+    ("HI_0012","Tremors felt in Delhi NCR Noida Sector 62 mein cracks in buildings evacuating","manual_hinglish"),
+    ("HI_0013","People trapped under rubble in Joshimath after quake heavy equipment needed now","manual_hinglish"),
+    ("HI_0014","Factory mein aag lag gayi Okhla Industrial Area Phase 2 fire brigade call karo","manual_hinglish"),
+    ("HI_0015","Building fire in Dharavi slum people stuck on upper floors ladder truck needed","manual_hinglish"),
+    ("HI_0016","Massive fire in Anaj Mandi Delhi multiple casualties blood O+ urgently needed","manual_hinglish"),
+    ("HI_0017","Forest fire spreading near Nainital villages in Ramgarh at risk evacuation needed","manual_hinglish"),
+    ("HI_0018","Cyclone Biparjoy approaching Kutch coast fishing villages need immediate evacuation","manual_hinglish"),
+    ("HI_0019","Very heavy rain in Chennai due to depression Velachery area waterlogged need boats","manual_hinglish"),
+    ("HI_0020","Storm in Odisha coast Puri district fishermen stuck at sea coast guard needed","manual_hinglish"),
+    ("HI_0021","Road accident on NH-8 near Gurgaon toll 3 injured need ambulance urgently","manual_hinglish"),
+    ("HI_0022","Child fell in borewell near Hisar Haryana NDRF team needed immediately SaveHim","manual_hinglish"),
+    ("HI_0023","Landslide blocked NH-44 near Ramban JK 200 vehicles stranded need bulldozers","manual_hinglish"),
+    ("HI_0024","Multiple people injured after wall collapse in Bhiwandi send rescue immediately","manual_hinglish"),
+    ("HI_0025","Train derailment near Balasore Odisha many casualties blood donors needed urgently","manual_hinglish"),
+    ("HI_0026","Heatwave in Rajasthan 48 deg C in Churu elderly people collapsing medical camps","manual_hinglish"),
+    ("HI_0027","Gas leak in BHEL plant Haridwar workers evacuating fire brigade medical on way","manual_hinglish"),
+    ("HI_0028","Missing child 8 yr old lost near Kumbh Mela Prayagraj police help needed","manual_hinglish"),
+    ("HI_0029","Jal bhar gaya basement mein RK Puram sector 4 pump chalao please","manual_hinglish"),
+    ("HI_0030","Nainital mein landslide road band water supply cut rescue teams bhejo","manual_hinglish"),
+    # US-style tweets from Kaggle training set style
+    ("KG_00101","Just happened a terrible car crash flooding 45 deg off I-10 freeway ca terror","kaggle_sample"),
+    ("KG_00102","heard about earthquake devastating lives in Nepal sent prayers and need aid","kaggle_sample"),
+    ("KG_00103","forest fire burning near our neighborhood in California send help immediately","kaggle_sample"),
+    ("KG_00104","displaced families at Red Cross shelter near Downtown LA need food and blankets","kaggle_sample"),
+    ("KG_00105","Tornado warning near Oklahoma City suburbs evacuate now official emergency alert","kaggle_sample"),
+    ("KG_00106","rescue operation underway at collapsed mine shaft near Welsh village send teams","kaggle_sample"),
+    ("KG_00107","typhoon ravaged coastal town of Leyte require immediate medical assistance","kaggle_sample"),
+    ("KG_00108","wildfire spreading toward residential areas near Paradise California evacuate","kaggle_sample"),
+    ("KG_00109","dam breach threatening downstream villages near Wayanad Kerala send NDRF","kaggle_sample"),
+    ("KG_00110","emergency food distribution needed at cyclone shelter near Bhubaneswar airport","kaggle_sample"),
+    ("KG_00111","need water purification tablets at flood relief camp near Patna junction","kaggle_sample"),
+    ("KG_00112","rescue volunteers needed at debris field near collapsed building Beirut port area","kaggle_sample"),
+    ("KG_00113","people missing after bridge collapse over Mahanadi river need search teams","kaggle_sample"),
+    ("KG_00114","supply tents and blankets at earthquake victims camp near Muzaffarabad","kaggle_sample"),
+    ("KG_00115","collapsed building at Bhiwandi Maharashtra workers trapped need cranes urgently","kaggle_sample"),
+    ("KG_00116","relief camp at Nizamabad district center overwhelmed need more food supplies","kaggle_sample"),
+    ("KG_00117","fire at Bandra slum area no water pressure send tanker trucks immediately","kaggle_sample"),
+    ("KG_00118","emergency at Surat diamond factory explosion workers injured hospital needed","kaggle_sample"),
+    ("KG_00119","school building collapsed near Sion Mumbai students trapped send rescue team","kaggle_sample"),
+    ("KG_00120","send helicopters to remote villages near Pin Valley Spiti cut off by snow","kaggle_sample"),
+]
+
+OUT_PATH = os.path.join(OUT_DIR, "corpus.csv")
+with open(OUT_PATH, "w", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow(["message_id","raw_text","source"])
+    w.writerows(MESSAGES)
+
+print(f"Sample corpus saved: {OUT_PATH}")
+print(f"Total messages: {len(MESSAGES)}")

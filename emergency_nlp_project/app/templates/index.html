@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency NLP — Syntactic Pattern Detector</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 24px 16px;
+  }
+
+  /* ── Header ─────────────────────────────────────── */
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin: 4px 3px;
+  }
+  .badge-blue  { background:#1e40af22; color:#60a5fa; border:1px solid #1d4ed8; }
+  .badge-green { background:#14532d22; color:#4ade80; border:1px solid #166534; }
+  .badge-red   { background:#7f1d1d22; color:#f87171; border:1px solid #991b1b; }
+  .badge-gray  { background:#1e293b;   color:#94a3b8; border:1px solid #334155; }
+
+  /* ── Status bar ─────────────────────────────────── */
+  .status-bar {
+    display: flex; align-items: center; gap: 12px;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 10px 16px;
+    margin-bottom: 24px;
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+  }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .dot-green  { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+  .dot-red    { background: #ef4444; box-shadow: 0 0 6px #ef4444; }
+  .dot-yellow { background: #eab308; box-shadow: 0 0 6px #eab308; }
+
+  /* ── Layout ─────────────────────────────────────── */
+  .container { max-width: 960px; margin: 0 auto; }
+  .card {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .card h2 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+
+  /* ── Controls ───────────────────────────────────── */
+  textarea {
+    width: 100%;
+    background: #0f1117;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    padding: 12px;
+    resize: vertical;
+    min-height: 90px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  textarea:focus { outline: none; border-color: #3b82f6; }
+
+  .controls {
+    display: flex; gap: 10px; align-items: center;
+    margin-top: 12px; flex-wrap: wrap;
+  }
+  select {
+    background: #0f1117;
+    border: 1px solid #475569;
+    border-radius: 8px;
+    color: #e2e8f0;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    cursor: pointer;
+  }
+  select:focus { outline: none; border-color: #3b82f6; }
+
+  .btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-primary { background: #3b82f6; color: white; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-primary:disabled { background: #1e3a5f; color: #64748b; cursor: not-allowed; }
+  .btn-outline { background: transparent; color: #94a3b8; border: 1px solid #475569; }
+  .btn-outline:hover { border-color: #94a3b8; color: #e2e8f0; }
+  .btn-success { background: #16a34a; color: white; }
+  .btn-success:hover { background: #15803d; }
+  .btn-warning { background: #d97706; color: white; }
+  .btn-warning:hover { background: #b45309; }
+
+  /* ── Examples ───────────────────────────────────── */
+  .examples { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .example-chip {
+    background: #0f1117;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .example-chip:hover { border-color: #3b82f6; color: #e2e8f0; }
+
+  /* ── Legend ─────────────────────────────────────── */
+  .legend { display: flex; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: #94a3b8; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+  .swatch-loc { background: #1e40af44; border: 1.5px solid #3b82f6; }
+  .swatch-act { background: #9a3412aa; border: 1.5px solid #f97316; }
+
+  /* ── Output ─────────────────────────────────────── */
+  #output-area {
+    background: #0f1117;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 14px;
+    min-height: 60px;
+    line-height: 2.2;
+    font-size: 1rem;
+    letter-spacing: 0.01em;
+  }
+  .tok  { display: inline-block; padding: 1px 2px; border-radius: 3px; margin: 1px; }
+  .tok.loc {
+    background: #1e3a8a44;
+    border-bottom: 2px solid #3b82f6;
+    color: #93c5fd;
+    font-weight: 600;
+  }
+  .tok.act {
+    background: #7c2d1244;
+    border-bottom: 2px solid #f97316;
+    color: #fdba74;
+    font-weight: 600;
+  }
+  .tok.other { color: #cbd5e1; }
+  .tok:hover { filter: brightness(1.3); cursor: default; }
+
+  /* ── Summary cards ──────────────────────────────── */
+  .summary-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .summary-box {
+    background: #0f1117;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .summary-box h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .h3-loc { color: #3b82f6; }
+  .h3-act { color: #f97316; }
+  .tag-pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 2px;
+  }
+  .pill-loc { background: #1e3a8a33; color: #93c5fd; border: 1px solid #1d4ed8; }
+  .pill-act { background: #7c2d1233; color: #fdba74; border: 1px solid #c2410c; }
+
+  /* ── Token table ─────────────────────────────────── */
+  details { margin-top: 14px; }
+  summary { cursor: pointer; font-size: 0.82rem; color: #64748b; user-select: none; }
+  summary:hover { color: #94a3b8; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+  th, td {
+    text-align: left;
+    padding: 6px 10px;
+    border-bottom: 1px solid #1e293b;
+  }
+  th { color: #64748b; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+  td.label-loc { color: #60a5fa; font-weight: 600; }
+  td.label-act { color: #fb923c; font-weight: 600; }
+  td.label-o   { color: #475569; }
+
+  /* ── Pipeline section ───────────────────────────── */
+  #pipeline-log {
+    background: #0f1117;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: #4ade80;
+    max-height: 240px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    display: none;
+    margin-top: 12px;
+  }
+
+  /* ── Spinner ─────────────────────────────────────── */
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid #334155;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Error ───────────────────────────────────────── */
+  .error-box {
+    background: #7f1d1d22;
+    border: 1px solid #991b1b;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fca5a5;
+    font-size: 0.88rem;
+    margin-top: 12px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🚨 Emergency NLP — Syntactic Pattern Detector</h1>
+    <p>Identifies <strong>LOCATION</strong> and <strong>ACTION-NEEDED</strong> spans in disaster messages</p>
+    <div style="margin-top:10px">
+      <span class="badge badge-blue">Classic ML</span>
+      <span class="badge badge-green">spaCy NLP</span>
+      <span class="badge badge-gray">Decision Tree · Random Forest · AdaBoost</span>
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="status-bar" id="status-bar">
+    <span id="status-models">
+      <span class="status-dot dot-yellow"></span> Checking models...
+    </span>
+    <span id="status-spacy">
+      <span class="status-dot dot-yellow"></span> Checking spaCy...
+    </span>
+    <span style="margin-left:auto">
+      <button class="btn btn-outline" onclick="checkStatus()" style="padding:4px 12px;font-size:0.78rem">
+        Refresh Status
+      </button>
+    </span>
+  </div>
+
+  <!-- Input Card -->
+  <div class="card">
+    <h2>Input Message</h2>
+    <textarea id="msg-input" placeholder="Type or paste a disaster / emergency message here...
+e.g. People trapped near Kalindi Kunj bridge, need boats and rescue teams urgently."></textarea>
+
+    <div class="examples" id="examples">
+      <small style="color:#475569;align-self:center;font-size:0.75rem">Try:</small>
+    </div>
+
+    <div class="controls">
+      <select id="model-select">
+        <option value="random_forest">🌲 Random Forest</option>
+        <option value="decision_tree">🌿 Decision Tree</option>
+        <option value="adaboost">⚡ AdaBoost</option>
+      </select>
+      <button class="btn btn-primary" id="analyze-btn" onclick="analyzeText()">
+        Analyze Message
+      </button>
+      <button class="btn btn-outline" onclick="clearAll()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Output Card -->
+  <div class="card" id="output-card" style="display:none">
+    <h2>Analysis Result</h2>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-swatch swatch-loc"></div>
+        <span>LOCATION span</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-swatch swatch-act"></div>
+        <span>ACTION-NEEDED span</span>
+      </div>
+    </div>
+
+    <div id="output-area"></div>
+
+    <div class="summary-row">
+      <div class="summary-box">
+        <h3 class="h3-loc">📍 Location Tokens</h3>
+        <div id="loc-summary">—</div>
+      </div>
+      <div class="summary-box">
+        <h3 class="h3-act">🆘 Action Tokens</h3>
+        <div id="act-summary">—</div>
+      </div>
+    </div>
+
+    <details>
+      <summary>▶ Token-level detail table</summary>
+      <table>
+        <thead><tr><th>#</th><th>Token</th><th>POS</th><th>DEP</th><th>Label</th></tr></thead>
+        <tbody id="token-table"></tbody>
+      </table>
+    </details>
+
+    <div id="error-box" class="error-box" style="display:none"></div>
+  </div>
+
+  <!-- Pipeline Card -->
+  <div class="card">
+    <h2>Pipeline Control</h2>
+    <p style="font-size:0.85rem;color:#94a3b8;margin-bottom:14px">
+      If models are not yet trained, run the full pipeline here.
+      Uses the <strong>sample corpus</strong> (120 messages) — no Kaggle login needed.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-success" onclick="runPipeline(true)">
+        ▶ Run Pipeline (Sample Corpus)
+      </button>
+      <button class="btn btn-warning" onclick="runPipeline(false)">
+        ☁ Run Pipeline (Kaggle Download)
+      </button>
+    </div>
+    <div id="pipeline-log"></div>
+  </div>
+
+</div>
+
+<script>
+const EXAMPLES = [
+  "People trapped near Kalindi Kunj bridge need boats and rescue teams urgently",
+  "Flood in Sector 12 Noida please send helicopters immediately",
+  "Building fire at Dharavi slum people stuck on 4th floor ladder truck needed",
+  "Earthquake hit Chamoli district send NDRF rescue teams",
+  "SOS from Majuli island Assam 5000 people stranded need food and water",
+  "Cyclone approaching Kutch coast fishing villages need immediate evacuation",
+  "Child fell in borewell near Hisar Haryana NDRF team needed",
+  "Gas leak in Okhla Industrial Area fire brigade call karo",
+];
+
+// populate example chips
+const exDiv = document.getElementById("examples");
+EXAMPLES.forEach(ex => {
+  const chip = document.createElement("span");
+  chip.className = "example-chip";
+  chip.textContent = ex.substring(0,55) + (ex.length>55?"…":"");
+  chip.title = ex;
+  chip.onclick = () => { document.getElementById("msg-input").value = ex; };
+  exDiv.appendChild(chip);
+});
+
+async function checkStatus() {
+  try {
+    const res  = await fetch("/api/status");
+    const data = await res.json();
+    const ms   = document.getElementById("status-models");
+    const ss   = document.getElementById("status-spacy");
+
+    if (data.models_loaded) {
+      ms.innerHTML = `<span class="status-dot dot-green"></span> Models ready (${data.available_models.join(", ")})`;
+      document.getElementById("analyze-btn").disabled = false;
+    } else {
+      ms.innerHTML = `<span class="status-dot dot-red"></span> Models not trained — run pipeline below`;
+      document.getElementById("analyze-btn").disabled = true;
+    }
+    ss.innerHTML = data.spacy_ready
+      ? `<span class="status-dot dot-green"></span> spaCy ready`
+      : `<span class="status-dot dot-red"></span> spaCy not loaded`;
+  } catch(e) {
+    document.getElementById("status-models").innerHTML =
+      `<span class="status-dot dot-red"></span> Server not responding`;
+  }
+}
+
+async function analyzeText() {
+  const text  = document.getElementById("msg-input").value.trim();
+  const model = document.getElementById("model-select").value;
+  const btn   = document.getElementById("analyze-btn");
+  const outCard = document.getElementById("output-card");
+  const outArea = document.getElementById("output-area");
+
+  if (!text) { alert("Please enter a message."); return; }
+
+  btn.disabled  = true;
+  btn.innerHTML = `<span class="spinner"></span>Analyzing...`;
+  outCard.style.display = "block";
+  outArea.innerHTML = `<span style="color:#64748b"><span class="spinner"></span>Processing...</span>`;
+  document.getElementById("error-box").style.display = "none";
+
+  try {
+    const res  = await fetch("/api/analyze", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({text, model}),
+    });
+    const data = await res.json();
+
+    if (!res.ok || data.error) {
+      showError(data.error || "Analysis failed.");
+      outArea.innerHTML = "";
+      return;
+    }
+
+    renderOutput(data);
+  } catch(e) {
+    showError("Network error: " + e.message);
+  } finally {
+    btn.disabled  = false;
+    btn.innerHTML = "Analyze Message";
+  }
+}
+
+function renderOutput(data) {
+  const outArea  = document.getElementById("output-area");
+  const locSumm  = document.getElementById("loc-summary");
+  const actSumm  = document.getElementById("act-summary");
+  const tblBody  = document.getElementById("token-table");
+
+  // Render highlighted tokens
+  outArea.innerHTML = data.tokens.map(t => {
+    const cls = t.css === "loc" ? "tok loc"
+              : t.css === "act" ? "tok act"
+              : "tok other";
+    const ttip = `${t.label} | POS:${t.pos} | DEP:${t.dep}`;
+    return `<span class="${cls}" title="${ttip}">${escHtml(t.token)}</span>`;
+  }).join(" ");
+
+  // Location summary
+  if (data.loc_tokens.length > 0) {
+    locSumm.innerHTML = data.loc_tokens
+      .map(t => `<span class="tag-pill pill-loc">${escHtml(t)}</span>`)
+      .join("");
+  } else {
+    locSumm.innerHTML = `<span style="color:#475569;font-size:0.82rem">No location spans detected</span>`;
+  }
+
+  // Action summary
+  if (data.act_tokens.length > 0) {
+    actSumm.innerHTML = data.act_tokens
+      .map(t => `<span class="tag-pill pill-act">${escHtml(t)}</span>`)
+      .join("");
+  } else {
+    actSumm.innerHTML = `<span style="color:#475569;font-size:0.82rem">No action spans detected</span>`;
+  }
+
+  // Token table
+  tblBody.innerHTML = data.tokens.map((t,i) => {
+    const lcls = t.css === "loc" ? "label-loc"
+               : t.css === "act" ? "label-act" : "label-o";
+    return `<tr>
+      <td style="color:#475569">${i+1}</td>
+      <td style="color:#e2e8f0;font-weight:500">${escHtml(t.token)}</td>
+      <td style="color:#94a3b8">${t.pos}</td>
+      <td style="color:#94a3b8">${t.dep}</td>
+      <td class="${lcls}">${t.label}</td>
+    </tr>`;
+  }).join("");
+}
+
+function showError(msg) {
+  const eb = document.getElementById("error-box");
+  eb.textContent = "⚠ " + msg;
+  eb.style.display = "block";
+}
+
+function clearAll() {
+  document.getElementById("msg-input").value = "";
+  document.getElementById("output-card").style.display = "none";
+  document.getElementById("output-area").innerHTML = "";
+}
+
+async function runPipeline(useSample) {
+  const log = document.getElementById("pipeline-log");
+  log.style.display = "block";
+  log.textContent = useSample
+    ? "Running pipeline with sample corpus...\n"
+    : "Running pipeline with Kaggle download...\n(Ensure kaggle.json is in ~/.kaggle/)\n";
+
+  try {
+    const res  = await fetch("/api/train", {
+      method : "POST",
+      headers: {"Content-Type":"application/json"},
+      body   : JSON.stringify({use_sample: useSample}),
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      log.textContent += "\n✅ Pipeline complete!\n" + (data.stdout || "");
+      checkStatus();
+    } else {
+      log.textContent += "\n❌ Pipeline failed:\n" + (data.stderr || data.error || "Unknown error");
+    }
+  } catch(e) {
+    log.textContent += "\n❌ Error: " + e.message;
+  }
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
+}
+
+// Initial status check
+checkStatus();
+</script>
+</body>
+</html>
