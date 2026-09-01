@@ -1,0 +1,15 @@
+﻿# Kaggle credentials - NEVER commit this
+kaggle.json
+
+# Data & models (large files)
+data/raw/
+models/*.pkl
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
