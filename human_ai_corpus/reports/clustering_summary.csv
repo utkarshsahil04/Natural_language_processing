@@ -1,0 +1,4 @@
+method,silhouette,ARI_vs_true
+KMeans_k2,0.3019074978595901,1.0
+Hierarchical_k2,0.2970398215235769,0.881182614051288
+best_k_by_silhouette,0.3841530739429075,6.0

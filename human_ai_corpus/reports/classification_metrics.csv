@@ -1,0 +1,4 @@
+accuracy,precision,recall,f1,model,cv_f1_mean,cv_f1_std
+1.0,1.0,1.0,1.0,DecisionTree,1.0,0.0
+1.0,1.0,1.0,1.0,AdaBoost,1.0,0.0
+1.0,1.0,1.0,1.0,GradientBoosting,1.0,0.0

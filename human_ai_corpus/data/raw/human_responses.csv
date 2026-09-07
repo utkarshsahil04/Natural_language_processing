@@ -1,0 +1,181 @@
+response_id,prompt_id,prompt,response_text,source_type
+H_0001,P01,How do I stay motivated while studying for exams?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0002,P01,How do I stay motivated while studying for exams?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0003,P01,How do I stay motivated while studying for exams?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0004,P01,How do I stay motivated while studying for exams?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0005,P02,What is the best way to manage stress during college?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0006,P02,What is the best way to manage stress during college?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0007,P02,What is the best way to manage stress during college?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0008,P02,What is the best way to manage stress during college?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0009,P03,How can I improve my public speaking skills?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0010,P03,How can I improve my public speaking skills?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0011,P03,How can I improve my public speaking skills?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0012,P03,How can I improve my public speaking skills?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0013,P04,What should I do if I feel lonely in a new city?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0014,P04,What should I do if I feel lonely in a new city?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0015,P04,What should I do if I feel lonely in a new city?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0016,P04,What should I do if I feel lonely in a new city?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0017,P05,How do I balance part-time work and college classes?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0018,P05,How do I balance part-time work and college classes?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0019,P05,How do I balance part-time work and college classes?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0020,P05,How do I balance part-time work and college classes?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0021,P06,What are some tips for waking up early every day?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0022,P06,What are some tips for waking up early every day?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0023,P06,What are some tips for waking up early every day?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0024,P06,What are some tips for waking up early every day?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0025,P07,How can I stop procrastinating on assignments?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0026,P07,How can I stop procrastinating on assignments?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0027,P07,How can I stop procrastinating on assignments?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0028,P07,How can I stop procrastinating on assignments?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0029,P08,What should a first-year student know about making friends?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0030,P08,What should a first-year student know about making friends?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0031,P08,What should a first-year student know about making friends?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0032,P08,What should a first-year student know about making friends?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0033,P09,How do I deal with failure after a bad exam result?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0034,P09,How do I deal with failure after a bad exam result?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0035,P09,How do I deal with failure after a bad exam result?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0036,P09,How do I deal with failure after a bad exam result?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0037,P10,What is a healthy daily routine for a college student?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0038,P10,What is a healthy daily routine for a college student?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0039,P10,What is a healthy daily routine for a college student?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0040,P10,What is a healthy daily routine for a college student?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0041,P11,What is climate change and why does it matter?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0042,P11,What is climate change and why does it matter?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0043,P11,What is climate change and why does it matter?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0044,P11,What is climate change and why does it matter?,i think it works through steps. not 100% sure on details though.,human
+H_0045,P12,How does photosynthesis work in simple terms?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0046,P12,How does photosynthesis work in simple terms?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0047,P12,How does photosynthesis work in simple terms?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0048,P12,How does photosynthesis work in simple terms?,i think it works through steps. not 100% sure on details though.,human
+H_0049,P13,What are the main differences between Python and Java?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0050,P13,What are the main differences between Python and Java?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0051,P13,What are the main differences between Python and Java?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0052,P13,What are the main differences between Python and Java?,i think it works through steps. not 100% sure on details though.,human
+H_0053,P14,What is the internet and how does it work?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0054,P14,What is the internet and how does it work?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0055,P14,What is the internet and how does it work?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0056,P14,What is the internet and how does it work?,i think it works through steps. not 100% sure on details though.,human
+H_0057,P15,What causes earthquakes?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0058,P15,What causes earthquakes?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0059,P15,What causes earthquakes?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0060,P15,What causes earthquakes?,i think it works through steps. not 100% sure on details though.,human
+H_0061,P16,What is artificial intelligence in simple words?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0062,P16,What is artificial intelligence in simple words?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0063,P16,What is artificial intelligence in simple words?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0064,P16,What is artificial intelligence in simple words?,i think it works through steps. not 100% sure on details though.,human
+H_0065,P17,How do vaccines protect us from diseases?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0066,P17,How do vaccines protect us from diseases?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0067,P17,How do vaccines protect us from diseases?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0068,P17,How do vaccines protect us from diseases?,i think it works through steps. not 100% sure on details though.,human
+H_0069,P18,What is the water cycle?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0070,P18,What is the water cycle?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0071,P18,What is the water cycle?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0072,P18,What is the water cycle?,i think it works through steps. not 100% sure on details though.,human
+H_0073,P19,What are renewable energy sources?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0074,P19,What are renewable energy sources?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0075,P19,What are renewable energy sources?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0076,P19,What are renewable energy sources?,i think it works through steps. not 100% sure on details though.,human
+H_0077,P20,What is democracy and how does voting work?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0078,P20,What is democracy and how does voting work?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0079,P20,What is democracy and how does voting work?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0080,P20,What is democracy and how does voting work?,i think it works through steps. not 100% sure on details though.,human
+H_0081,P21,Write a short story about a lost umbrella that finds its owner.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0082,P21,Write a short story about a lost umbrella that finds its owner.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0083,P21,Write a short story about a lost umbrella that finds its owner.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0084,P21,Write a short story about a lost umbrella that finds its owner.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0085,P22,Describe a rainy evening in a busy Indian city market.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0086,P22,Describe a rainy evening in a busy Indian city market.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0087,P22,Describe a rainy evening in a busy Indian city market.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0088,P22,Describe a rainy evening in a busy Indian city market.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0089,P23,Write a letter from a time traveler to their past self.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0090,P23,Write a letter from a time traveler to their past self.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0091,P23,Write a letter from a time traveler to their past self.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0092,P23,Write a letter from a time traveler to their past self.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0093,P24,Create a poem about friendship that survives distance.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0094,P24,Create a poem about friendship that survives distance.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0095,P24,Create a poem about friendship that survives distance.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0096,P24,Create a poem about friendship that survives distance.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0097,P25,Describe a futuristic classroom in the year 2050.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0098,P25,Describe a futuristic classroom in the year 2050.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0099,P25,Describe a futuristic classroom in the year 2050.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0100,P25,Describe a futuristic classroom in the year 2050.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0101,P26,Write a short dialogue between a cat and a dog arguing about snacks.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0102,P26,Write a short dialogue between a cat and a dog arguing about snacks.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0103,P26,Write a short dialogue between a cat and a dog arguing about snacks.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0104,P26,Write a short dialogue between a cat and a dog arguing about snacks.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0105,P27,Imagine a world without smartphones for one day. Describe it.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0106,P27,Imagine a world without smartphones for one day. Describe it.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0107,P27,Imagine a world without smartphones for one day. Describe it.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0108,P27,Imagine a world without smartphones for one day. Describe it.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0109,P28,Write a mystery scene that starts with a locked room and a missing key.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0110,P28,Write a mystery scene that starts with a locked room and a missing key.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0111,P28,Write a mystery scene that starts with a locked room and a missing key.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0112,P28,Write a mystery scene that starts with a locked room and a missing key.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0113,P29,Describe your idea of a perfect weekend getaway.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0114,P29,Describe your idea of a perfect weekend getaway.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0115,P29,Describe your idea of a perfect weekend getaway.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0116,P29,Describe your idea of a perfect weekend getaway.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0117,P30,Write a short motivational speech for students before finals.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0118,P30,Write a short motivational speech for students before finals.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0119,P30,Write a short motivational speech for students before finals.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0120,P30,Write a short motivational speech for students before finals.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0121,P31,Is social media more helpful or harmful for students?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0122,P31,Is social media more helpful or harmful for students?,personally real life practice matters more. others might disagree.,human
+H_0123,P31,Is social media more helpful or harmful for students?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0124,P31,Is social media more helpful or harmful for students?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0125,P32,Should college education be free for everyone?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0126,P32,Should college education be free for everyone?,personally real life practice matters more. others might disagree.,human
+H_0127,P32,Should college education be free for everyone?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0128,P32,Should college education be free for everyone?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0129,P33,Do you think online learning is better than classroom learning?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0130,P33,Do you think online learning is better than classroom learning?,personally real life practice matters more. others might disagree.,human
+H_0131,P33,Do you think online learning is better than classroom learning?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0132,P33,Do you think online learning is better than classroom learning?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0133,P34,Is working from home better than working from an office?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0134,P34,Is working from home better than working from an office?,personally real life practice matters more. others might disagree.,human
+H_0135,P34,Is working from home better than working from an office?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0136,P34,Is working from home better than working from an office?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0137,P35,Should students be allowed to use AI tools for assignments?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0138,P35,Should students be allowed to use AI tools for assignments?,personally real life practice matters more. others might disagree.,human
+H_0139,P35,Should students be allowed to use AI tools for assignments?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0140,P35,Should students be allowed to use AI tools for assignments?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0141,P36,Is fame worth the pressure that comes with it?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0142,P36,Is fame worth the pressure that comes with it?,personally real life practice matters more. others might disagree.,human
+H_0143,P36,Is fame worth the pressure that comes with it?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0144,P36,Is fame worth the pressure that comes with it?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0145,P37,Do grades really measure intelligence?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0146,P37,Do grades really measure intelligence?,personally real life practice matters more. others might disagree.,human
+H_0147,P37,Do grades really measure intelligence?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0148,P37,Do grades really measure intelligence?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0149,P38,Should cities ban private cars in crowded areas?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0150,P38,Should cities ban private cars in crowded areas?,personally real life practice matters more. others might disagree.,human
+H_0151,P38,Should cities ban private cars in crowded areas?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0152,P38,Should cities ban private cars in crowded areas?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0153,P39,Is traveling alone better than traveling with friends?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0154,P39,Is traveling alone better than traveling with friends?,personally real life practice matters more. others might disagree.,human
+H_0155,P39,Is traveling alone better than traveling with friends?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0156,P39,Is traveling alone better than traveling with friends?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0157,P40,Should schools teach financial literacy as a core subject?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0158,P40,Should schools teach financial literacy as a core subject?,personally real life practice matters more. others might disagree.,human
+H_0159,P40,Should schools teach financial literacy as a core subject?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0160,P40,Should schools teach financial literacy as a core subject?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0161,P41,How can I prepare for my first job interview?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0162,P41,How can I prepare for my first job interview?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0163,P41,How can I prepare for my first job interview?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0164,P41,How can I prepare for my first job interview?,my tip is simple: study in short bursts. dont overcomplicate it.,human
+H_0165,P42,What is blockchain technology explained simply?,ok so basically it is basically a process that repeats. thats the simple version.,human
+H_0166,P42,What is blockchain technology explained simply?,from what i remember there are a few main parts. also people overcomplicate the definition.,human
+H_0167,P42,What is blockchain technology explained simply?,short answer: the simple idea is cause and effect. longer answer gets messy lol.,human
+H_0168,P42,What is blockchain technology explained simply?,i think it works through steps. not 100% sure on details though.,human
+H_0169,P43,Write a scene where two strangers meet on a delayed train.,alright here goes - a quiet street after rain. then suddenly someone finds what they lost.,human
+H_0170,P43,Write a scene where two strangers meet on a delayed train.,picture this: two people share an awkward silence. later they laugh and talk anyway.,human
+H_0171,P43,Write a scene where two strangers meet on a delayed train.,tiny story: an old object waits somewhere. in the end its owner comes back surprised.,human
+H_0172,P43,Write a scene where two strangers meet on a delayed train.,hmm maybe the city feels tired and loud. and somehow one small kind moment changes the mood.,human
+H_0173,P44,Is it better to specialize early or explore many interests in college?,i feel like it helps if used carefully. but also too much of it becomes noise. so mixed.,human
+H_0174,P44,Is it better to specialize early or explore many interests in college?,personally real life practice matters more. others might disagree.,human
+H_0175,P44,Is it better to specialize early or explore many interests in college?,depends. for me classroom focus is better for me. still flexibility is still useful matters though.,human
+H_0176,P44,Is it better to specialize early or explore many interests in college?,nah for me grades are not the full story. online takes can be dramatic.,human
+H_0177,P45,How do I apologize properly after a misunderstanding with a friend?,honestly i just make tiny goals. works better than fancy plans for me.,human
+H_0178,P45,How do I apologize properly after a misunderstanding with a friend?,tbh sleep properly. also talk to a friend when stuck. not perfect but it helps.,human
+H_0179,P45,How do I apologize properly after a misunderstanding with a friend?,i usually keep a messy notebook. sometimes reward myself after finishing. depends on the day.,human
+H_0180,P45,How do I apologize properly after a misunderstanding with a friend?,my tip is simple: study in short bursts. dont overcomplicate it.,human

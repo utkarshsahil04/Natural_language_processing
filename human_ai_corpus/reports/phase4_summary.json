@@ -1,0 +1,55 @@
+{
+  "classification": [
+    {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "model": "DecisionTree",
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0
+    },
+    {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "model": "AdaBoost",
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0
+    },
+    {
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "model": "GradientBoosting",
+      "cv_f1_mean": 1.0,
+      "cv_f1_std": 0.0
+    }
+  ],
+  "top_features_gradient_boosting": {
+    "num_words": 0.9999999999999991,
+    "type_token_ratio": 3.529493991882934e-16,
+    "avg_word_length": 2.0920866102282349e-16,
+    "parse_tree_depth": 1.5093475956053469e-16,
+    "avg_sentence_length": 7.794687259118773e-17,
+    "pct_verb": 7.717081850326273e-17,
+    "punct_ratio": 8.691805784760082e-18,
+    "passive_ratio": 0.0
+  },
+  "cluster_alignment": {
+    "kmeans_ARI": 1.0,
+    "hierarchical_ARI": 0.881182614051288,
+    "crosstab": {
+      "AI": {
+        "0": 0,
+        "1": 180
+      },
+      "human": {
+        "0": 180,
+        "1": 0
+      }
+    }
+  }
+}

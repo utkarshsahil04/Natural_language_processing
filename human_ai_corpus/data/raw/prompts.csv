@@ -1,0 +1,46 @@
+prompt_id,category,prompt
+P01,advice,How do I stay motivated while studying for exams?
+P02,advice,What is the best way to manage stress during college?
+P03,advice,How can I improve my public speaking skills?
+P04,advice,What should I do if I feel lonely in a new city?
+P05,advice,How do I balance part-time work and college classes?
+P06,advice,What are some tips for waking up early every day?
+P07,advice,How can I stop procrastinating on assignments?
+P08,advice,What should a first-year student know about making friends?
+P09,advice,How do I deal with failure after a bad exam result?
+P10,advice,What is a healthy daily routine for a college student?
+P11,factual,What is climate change and why does it matter?
+P12,factual,How does photosynthesis work in simple terms?
+P13,factual,What are the main differences between Python and Java?
+P14,factual,What is the internet and how does it work?
+P15,factual,What causes earthquakes?
+P16,factual,What is artificial intelligence in simple words?
+P17,factual,How do vaccines protect us from diseases?
+P18,factual,What is the water cycle?
+P19,factual,What are renewable energy sources?
+P20,factual,What is democracy and how does voting work?
+P21,creative,Write a short story about a lost umbrella that finds its owner.
+P22,creative,Describe a rainy evening in a busy Indian city market.
+P23,creative,Write a letter from a time traveler to their past self.
+P24,creative,Create a poem about friendship that survives distance.
+P25,creative,Describe a futuristic classroom in the year 2050.
+P26,creative,Write a short dialogue between a cat and a dog arguing about snacks.
+P27,creative,Imagine a world without smartphones for one day. Describe it.
+P28,creative,Write a mystery scene that starts with a locked room and a missing key.
+P29,creative,Describe your idea of a perfect weekend getaway.
+P30,creative,Write a short motivational speech for students before finals.
+P31,opinion,Is social media more helpful or harmful for students?
+P32,opinion,Should college education be free for everyone?
+P33,opinion,Do you think online learning is better than classroom learning?
+P34,opinion,Is working from home better than working from an office?
+P35,opinion,Should students be allowed to use AI tools for assignments?
+P36,opinion,Is fame worth the pressure that comes with it?
+P37,opinion,Do grades really measure intelligence?
+P38,opinion,Should cities ban private cars in crowded areas?
+P39,opinion,Is traveling alone better than traveling with friends?
+P40,opinion,Should schools teach financial literacy as a core subject?
+P41,advice,How can I prepare for my first job interview?
+P42,factual,What is blockchain technology explained simply?
+P43,creative,Write a scene where two strangers meet on a delayed train.
+P44,opinion,Is it better to specialize early or explore many interests in college?
+P45,advice,How do I apologize properly after a misunderstanding with a friend?

@@ -1,0 +1,10 @@
+.env
+env/
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.cursor/
+*.cursor-*
+data/processed/*.pkl
+reports/*.png

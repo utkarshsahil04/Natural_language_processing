@@ -1,0 +1,4 @@
+response_id,prompt_id,prompt,response_text,source_type
+H_0001,P01,How do I stay motivated while studying for exams?,paste human answer here,human
+H_0002,P01,How do I stay motivated while studying for exams?,another human answer for same prompt,human
+H_0003,P02,What is the best way to manage stress during college?,paste human answer here,human
